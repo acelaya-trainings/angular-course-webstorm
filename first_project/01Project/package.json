@@ -1,0 +1,15 @@
+{
+  "name": "market",
+  "version": "1.0.0",
+  "description": "My market app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Alejandro Celaya <alejandro@alejandrocelaya.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3"
+  }
+}

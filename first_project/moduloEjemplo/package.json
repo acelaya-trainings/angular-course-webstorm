@@ -1,0 +1,5 @@
+{
+  "name": "moduloEjemplo",
+  "version": "0.0.1",
+  "main": "./lib/circle.js"
+}
