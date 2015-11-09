@@ -1,0 +1,22 @@
+{
+  "name": "market",
+  "description": "My market app",
+  "main": "index.js",
+  "authors": [
+    "Alejandro Celaya <alejandro@alejandrocelaya.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
