@@ -1,0 +1,19 @@
+<div class="slide">
+  <span class="edit-mode-tag">Edit Mode </span><input class="edit-mode-checkbox" type="checkbox" ng-model="editMode">
+  <!-- bind-html-unsafe para mostrar etiquetas HTML sin escapar-->
+  <div class="slide-content" ng-hide="editMode" ng-animate="'fade'" ng-bind-html-unsafe="prettyContent">
+  </div>
+
+  <!-- EDIT GUI-->
+  <div ng-show="editMode" ng-animate="'fade'" class="edit-gui">
+    <div>
+      <input type="text" ng-model="slide.title" />
+      <hr/>
+    </div>
+    <div>
+      <textarea ng-model="slide.content"></textarea>
+    </div>
+  </div>
+ 
+</div>
+

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <h2>Demo: Animaciones y transiciones con AngularJS</h2>
+      </div>
+   </div>
+  </div>
+</nav>
+
+<div class="container">
+ 
+  <!-- SLIDE VIEW -->
+  <div class="row">
+    <div class="span12">
+      <div class="slide-container">
+        <!-- GUI -->
+        <select class="gui-select" ng-model="slideTo" ng-change="gotoSlide()" ng-options="s.title for s in slides"></select>
+        <button class="gui-button" ng-click="newSlide()">New Slide</button>
+        <button class="gui-button" ng-disabled="{{slide.id == 1}}" ng-click="gotoFirst()">&lt;&lt;</button>
+        <button class="gui-button" ng-disabled="{{slide.id == 1}}" ng-click="gotoPrev()">&lt;</button>
+        <button class="gui-button" ng-disabled="{{slide.id == slides.length}}" ng-click="gotoNext()">&gt;</button>
+        <button class="gui-button" ng-disabled="{{slide.id == slides.length}}" ng-click="gotoLast()">&gt;&gt;</button>
+        <span class="link">Volver a <a href="#">Tu página</a></span>
+        <div data-ng-hide="hide" ng-animate="{enter: 'animate-enter', hide: 'animate-hide'}" ng-include src="'src/views/slide.html'"></div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
