@@ -1,0 +1,26 @@
+
+<label translate="NOMBRE">NOMBRE</label>
+<input type="text" name="nombre" 
+	value="{{producto.nombre}}" disabled />
+<br />
+<label translate="CANTIDAD">CANTIDAD</label>
+<input type="text" name="cantidad" 
+	value="{{producto.cantidad}}" disabled />
+<br />
+<label translate="PRECIO">PRECIO</label>
+<input type="text" name="precio" 
+	value="{{producto.precio}}" disabled />
+<br />
+<label translate="DISPONIBLE">DISPONIBLE</label>
+<input type="text" name="disponible" 
+	value="{{producto.disponible}}" disabled />
+<br />
+<label ng-repeat="lang in idiomas">
+ <input
+        name="currentLanguage"
+        type="radio"
+        value="{{lang}}"
+        ng-model="idioma.nombre" />
+        {{lang}}<br/>
+</label>
+<input type="submit" value="{{'DETALLE'|translate}}" ng-click="changeLanguage()"></input>
