@@ -2,11 +2,15 @@
 <head>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/model.js"></script>
 </head>
 <body ng-controller="MainController">
     Id: <input type="text" name="last_name" ng-model="user.id"><br>
     First Name: <input type="text" name="first_name" ng-model="user.firstName"><br>
     Last Name: <input type="text" name="last_name" ng-model="user.lastName"><br>
-    Occupation: <input type="text" name="last_name" ng-model="user.occupation"><br>
+    Occupation: <input type="text" name="last_name" ng-model="user.occupation"><br><br/>
+    <input type="text" ng-model="newUserId"/>&nbsp;
+    <input type="button" ng-click="getUser()" value="Cambiar de Usuario"/>
 </body>
 </html>

@@ -26,7 +26,6 @@ app.get('/user-data/:userId', function (req, res) {
         userId = req.params.userId,
         response = null;
 
-    console.log(userId);
     users.forEach(function (user) {
         if (user.id == userId) {
             response = user;
