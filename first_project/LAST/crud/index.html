@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" ng-app="crudApp">
+<head>
+    <meta charset="utf-8">
+    <title>My AngularJS App</title>
+</head>
+<body>
+<div data-ng-controller="CustomerController">  
+             <h3>CRUD application in AngularJS Array</h3>  
+       <hr />  
+       Name:<br />  
+             <input id="inName" type="text" data-ng-model="inputData.name" placeholder="name" />  
+             <br />  
+             City:<br />  
+             <input id="inCity" type="text" data-ng-model="inputData.city" placeholder="city" />  
+             <br />  
+             <button class="btn btn-primary" data-ng-click="saveCustomer()">Save</button>   
+       <button class="btn btn-primary" data-ng-click="cancelCustomer()">Cancel</button>        
+       <br />  
+             <br />  
+             Filter by Name:  
+             <input id="inSearch" type="text" data-ng-model="nameText" />  
+             <br />  
+       <div data-ng-view=""></div>      
+       <hr />  
+        </div>  
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-resource.js"></script>
+<script type="text/javascript">
+//'ngRoute' for routing  
+var crudApp = angular.module('crudApp', []);
+//handle routes here..  
+crudApp.config(function ($routeProvider) {  
+  $routeProvider  
+    .when('/partial1',  
+      {  
+        templateUrl: 'partial1.html',
+        controller: 'CustomerController'  
+      })  
+    .otherwise({ redirectTo: '/partial1' });  
+});  
+crudApp.factory('simpleFactory', function () {  
+    //create factory object  
+    var factory = {};        
+    var itemIndex = -1; //index for handling edit  
+    var customers = [  
+      { name: 'Dave Jones', city: 'Phoenix' },  
+      { name: 'Jamie Riley', city: 'Atlanta' },  
+      { name: 'Heedy Wahlin', city: 'Chandler' },  
+      { name: 'Thomas Winter', city: 'Seattle' }  
+    ];  
+    //getCustomers is simply going to come in and just return customers.  
+    factory.getCustomers = function () {  
+      //Can use $http object to retrieve remote data  
+      //in a "real" app  
+      return customers;  
+    };  
+    factory.getSelectedIndex = function () {  
+      return itemIndex;  
+    }  
+    return factory;  
+  });  
+//pass the factory name  
+crudApp.controller('CustomerController', function ($scope, simpleFactory) {  
+  $scope.customers = [];   
+  //perform initialization  
+  init();  
+  function init() {  
+    $scope.customers = simpleFactory.getCustomers();  
+  }
+
+  $scope.saveCustomer = function () {  
+    //alert(simpleFactory.itemIndex);  
+    if (simpleFactory.itemIndex == -1 || simpleFactory.itemIndex == undefined) {  
+      if ($scope.inputData.name != "" && $scope.inputData.name != undefined  
+        && $scope.inputData.city != "" && $scope.inputData.name != undefined) {  
+        $scope.customers.push(  
+        {  
+          name: $scope.inputData.name,  
+          city: $scope.inputData.city  
+        });  
+      }  
+      $scope.clearControls();  
+    }  
+    else {  
+      //perform update on object  
+      //alert(simpleFactory.itemIndex + ',' + $scope.customers[simpleFactory.itemIndex].name + ',' + $scope.customers[simpleFactory.itemIndex].city);  
+      var customer = $scope.customers[simpleFactory.itemIndex];  
+      customer.name = $scope.inputData.name;  
+      customer.city = $scope.inputData.city;  
+      $scope.clearControls();  
+      simpleFactory.itemIndex = -1;  
+    }  
+  }
+
+  $scope.removeCustomer = function (item) {  
+    var retVal = confirm("Do you want to delete item?");  
+    if (retVal == true) {  
+      var index = $scope.customers.indexOf(item)  
+      $scope.customers.splice(index, 1);  
+      if (index == simpleFactory.itemIndex) {  
+        simpleFactory.itemIndex = -1;  
+      }  
+    }  
+  }
+
+  $scope.cancelCustomer = function () {  
+    $scope.clearControls();  
+    simpleFactory.itemIndex = -1;  
+  }
+
+  $scope.clearControls = function () {  
+    angular.element(document.querySelector('#inName')).val("");  
+    angular.element(document.querySelector('#inCity')).val("");  
+    $scope.triggerChangeEventInputControls();  
+  } 
+
+  $scope.triggerChangeEventInputControls = function () {  
+    angular.element(document.querySelector('#inName')).change();  
+    angular.element(document.querySelector('#inCity')).change();  
+  }
+
+  $scope.editCustomer = function (item) {  
+    simpleFactory.itemIndex = $scope.customers.indexOf(item);  
+    angular.element(document.querySelector('#inName')).val($scope.customers[simpleFactory.itemIndex].name);  
+    angular.element(document.querySelector('#inCity')).val($scope.customers[simpleFactory.itemIndex].city);  
+    $scope.triggerChangeEventInputControls();  
+  }  
+});  
+
+</script>
+</body>
+</html>

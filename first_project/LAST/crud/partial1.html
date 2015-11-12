@@ -1,0 +1,14 @@
+<table class="tableData">  
+   <tr>  
+     <th>Name</th>  
+     <th>Address</th>  
+     <th>Delete</th>  
+     <th>Edit</th>  
+   </tr>  
+   <tr data-ng-repeat="customer in customers | filter:nameText | orderBy:'name'">  
+     <td> {{ customer.name }} </td>  
+     <td> {{ customer.city }} </td>  
+     <td> <button class="btn btn-primary" data-ng-click="removeCustomer(customer)">Delete</button> </td>  
+     <td> <button class="btn btn-primary" data-ng-click="editCustomer(customer)">Edit</button> </td>  
+   </tr>  
+ </table>  
